@@ -18,14 +18,20 @@ function onInput(event) {
 }
 
 function updateOutput() {
-  dataFromLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY) || '';
-  try {
-    parsedData = JSON.parse(dataFromLocalStorage);
-    form.elements.email.value = parsedData.email;
-    form.elements.message.value = parsedData.message;
-  } catch (error) {
-    console.log(error.name);
-    console.log(error.message);
+  if (localStorage.length === 0) {
+    form.elements.email.value = '';
+    form.elements.message.value = '';
+  } else {
+    const dataFromLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY) || '';
+    try {
+      parsedData = JSON.parse(dataFromLocalStorage);
+      form.elements.email.value = parsedData.email;
+      form.elements.message.value = parsedData.message;
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
+    localStorage.setItem(LOCALSTORAGE_KEY, dataFromLocalStorage);
   }
 }
 function onSubmit(event) {
