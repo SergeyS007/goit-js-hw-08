@@ -22,9 +22,9 @@ function updateOutput() {
     form.elements.email.value = '';
     form.elements.message.value = '';
   } else {
-    const dataFromLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY) || '';
+    const dataFromLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY);
     try {
-      parsedData = JSON.parse(dataFromLocalStorage);
+      const parsedData = JSON.parse(dataFromLocalStorage);
       form.elements.email.value = parsedData.email;
       form.elements.message.value = parsedData.message;
     } catch (error) {
